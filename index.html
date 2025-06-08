@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Company Page</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(120deg, #f0f4f8 0%, #d9e7fa 100%);
+            margin: 0;
+            padding: 0;
+            color: #2d3a5a;
+        }
+        header {
+            background: linear-gradient(90deg, #1a237e 0%, #3a3b49 100%);
+            color: #fff;
+            padding: 40px 0 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 18px rgba(26,35,126,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .main-title {
+            font-size: 3.2em;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #c0b8a0 10%, #42a5f5 50%, #7e57c2 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            -text-fill-color: transparent;
+            margin: 0;
+            padding: 0 10px;
+            text-shadow: 2px 4px 16px rgba(26,35,126,0.18);
+            animation: shine 2.5s linear infinite;
+            display: inline-block;
+        }
+        @keyframes shine {
+            0% { filter: brightness(1.1);}
+            50% { filter: brightness(1.4);}
+            100% { filter: brightness(1.1);}
+        }
+        .main-title::after {
+            content: "★";
+            color: #7f92e6;
+            margin-left: 18px;
+            font-size: 0.8em;
+            vertical-align: middle;
+            text-shadow: 0 2px 8px #6ea3b3;
+            animation: star-glow 1.8s infinite alternate;
+        }
+        @keyframes star-glow {
+            0% { text-shadow: 0 2px 8px #ffe082; }
+            100% { text-shadow: 0 0px 24px #ffe082, 0 2px 8px #ffe082; }
+        }
+        header h2 {
+            margin: 18px 0 0 0;
+            font-weight: 400;
+            font-size: 1.5em;
+            letter-spacing: 1px;
+            color: #e3eafc;
+            text-shadow: 0 2px 8px #1a237e33;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 28px 0 0 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 8px 18px;
+            border-radius: 20px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        nav a:hover {
+            background: #1e1f22;
+            transform: scale(1.1);
+        }
+        nav a:active {
+            background: #414453;
+            transform: scale(0.95);
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 40px auto;
+            gap: 30px;
+            padding: 0 10px;
+        }
+        main {
+            flex: 3;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 6px 24px rgba(60,60,120,0.08);
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e3eafc;
+            border-radius: 22px;
+            background: linear-gradient(120deg, #e3eafc 70%, #ffe082 100%);
+            border: 3px solid #42a5f5;
+            box-shadow: 0 4px 24px rgba(33,150,243,0.13), 0 2px 16px rgba(126,87,194,0.10);
+            transition: 
+                box-shadow 0.4s cubic-bezier(.25,.8,.25,1),
+                transform 0.4s cubic-bezier(.25,.8,.25,1),
+                background 0.4s,
+                border 0.4s;
+            position: relative;
+            z-index: 1;
+            color: #2d3a5a;
+        }
+        section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        section:hover {
+            box-shadow: 0 12px 40px 0 #7e57c2aa, 0 2px 24px 0 #42a5f5cc;
+            background: linear-gradient(120deg, #ffe082 60%, #e3eafc 100%);
+            border: 3px solid #7e57c2;
+            transform: translateY(-8px) scale(1.03);
+            z-index: 2;
+        }
+        .section-title {
+            color: #fff;
+            font-size: 1.5em;
+            margin-bottom: 18px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #42a5f5 30%, #7e57c2 100%);
+            border-radius: 12px;
+            padding: 10px 0;
+            box-shadow: 0 2px 12px #7e57c244;
+            text-shadow: 0 2px 8px #1a237e55;
+            border: none;
+            display: block;
+        }
+        .section-subtitle {
+            color: #3a3b49;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 18px 0 8px 0;
+            padding: 0;
+            background: none;
+            border: none;
+            box-shadow: none;
+            text-transform: none;
+            letter-spacing: 0.5px;
+            display: block;
+        }
+        aside {
+            flex: 1;
+            background: linear-gradient(120deg, #e3eafc 70%, #ffe082 100%);
+            border-radius: 22px;
+            box-shadow: 0 4px 24px rgba(33,150,243,0.13), 0 2px 16px rgba(126,87,194,0.10);
+            padding: 28px 22px;
+            min-width: 240px;
+            max-width: 340px;
+            margin-top: 0;
+            height: fit-content;
+            border: 3px solid #42a5f5;
+            position: relative;
+            transition:
+                box-shadow 0.4s cubic-bezier(.25,.8,.25,1),
+                transform 0.4s cubic-bezier(.25,.8,.25,1),
+                background 0.4s,
+                border 0.4s;
+            z-index: 1;
+            color: #2d3a5a; 
+        }
+        aside:hover {
+            box-shadow: 0 12px 40px 0 #7e57c2aa, 0 2px 24px 0 #42a5f5cc;
+            background: linear-gradient(120deg, #ffe082 60%, #e3eafc 100%);
+            border: 3px solid #7e57c2;
+            transform: translateY(-8px) scale(1.03);
+            z-index: 3;
+        }
+        .news-title {
+            color: #fff;
+            font-size: 1.5em;
+            margin-bottom: 18px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #42a5f5 30%, #7e57c2 100%);
+            border-radius: 12px;
+            padding: 10px 0;
+            box-shadow: 0 2px 12px #7e57c244;
+            text-shadow: 0 2px 8px #1a237e55;
+        }
+        .news-list {
+            list-style: disc inside;
+            padding-left: 0;
+        }
+        .news-list li {
+            margin-bottom: 15px;
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px 12px;
+            box-shadow: 0 2px 8px rgba(60,60,120,0.10);
+            font-size: 1.08em;
+            color: #2d3a5a;
+            font-weight: 500;
+            transition:
+                box-shadow 0.4s cubic-bezier(.25,.8,.25,1),
+                transform 0.4s cubic-bezier(.25,.8,.25,1),
+                background 0.4s,
+                color 0.3s;
+            cursor: pointer;
+        }
+        .news-list li:hover {
+            background: linear-gradient(90deg, #ffe082 60%, #e3eafc 100%);
+            color: #7e57c2;
+            box-shadow: 0 8px 24px #42a5f555, 0 2px 12px #7e57c244;
+            transform: translateY(-6px) scale(1.04);
+        }
+        .products-grid {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .product-card {
+            background: #e3eafc;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(26,35,126,0.07);
+            padding: 20px;
+            text-align: center;
+            width: 220px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.05) rotate(-2deg);
+            box-shadow: 0 8px 32px rgba(26,35,126,0.18);
+            background: linear-gradient(120deg, #e3eafc 60%, #c5cae9 100%);
+        }
+        .product-card:active {
+            transform: scale(0.97) rotate(1deg);
+            box-shadow: 0 2px 8px rgba(26,35,126,0.10);
+            background: #d1d9ff;
+        }
+        .product-card h4 {
+            margin: 10px 0 15px 0;
+            font-size: 1.2em;
+            color: #1a237e;
+        }
+        .product-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(60,60,120,0.10);
+            background: #fff;
+            margin-bottom: 10px;
+            transition: box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .product-card:hover .product-img {
+            box-shadow: 0 6px 24px rgba(60,60,120,0.18);
+        }
+        .company-logo-fixed {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1000;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 2px 12px rgba(26,35,126,0.15);
+            padding: 10px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: logo-glow 2s infinite alternate;
+        }
+        @keyframes logo-glow {
+            0% {
+                box-shadow: 0 0 16px 4px #ffe082, 0 2px 12px rgba(26,35,126,0.15);
+            }
+            100% {
+                box-shadow: 0 0 32px 12px #42a5f5, 0 2px 12px rgba(26,35,126,0.15);
+            }
+        }
+        .company-logo-fixed img {
+            max-width: 50px;
+            max-height: 50px;
+            display: block;
+        }
+        footer {
+            background: #393a46;
+            color: #fff;
+            text-align: center;
+            padding: 18px 0;
+            border-radius: 0 0 18px 18px;
+            margin-top: 40px;
+            font-size: 1em;
+        }
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+            }
+            aside {
+                max-width: 100%;
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="main-title">CompuStart Solutions</h1>
+        <h2>Welcome to Our Company</h2>
+        <nav>
+            <ul>
+                <li><a href="#start">Start</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#product">Product</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <main>
+            <section id="start">
+                <div class="section-title">Start</div>
+                <p>Hello! Welcome to CompuStart Solutions. We are happy to see you. We are a small company. We help people with computers. We want to help you. Our team is friendly and nice. We work every day. We like to help you with your problems. You can trust us. We are here for you. Our office is open every day. You can call us or visit us. We speak simple English. We want to make your life easy. If you have a problem, we help you. We are your friends.</p>
+                <ul>
+                    <li>We help you with your computer.</li>
+                    <li>We answer your questions.</li>
+                    <li>We are friendly and patient.</li>
+                    <li>We work fast and well.</li>
+                    <li>We want you to be happy.</li>
+                </ul>
+                <div class="section-subtitle">Mission</div>
+                <p>Our mission is to help people use technology in a simple way. We want everyone to have access to good computers and support.</p>
+                <div class="section-subtitle">Vision</div>
+                <p>Our vision is to be the best technology company in our city. We want to make technology easy and friendly for all people.</p>
+            </section>
+            <section id="services">
+                <div class="section-title">Services</div>
+                <p>We have many services for you. Our services are easy. We want you to understand. Here are our services:</p>
+                <ul>
+                    <li>Technical Support: We fix computers. If your computer is slow or broken, we help you. We clean your computer. We make your computer fast.</li>
+                    <li>Software Development: We make simple programs. We help you with your work or school. We install programs like Word and Excel.</li>
+                    <li>Network Solutions: We help you with internet. We fix your Wi-Fi. We make your internet fast.</li>
+                    <li>Virus Removal: If your computer has a virus, we clean it. Your computer will be safe.</li>
+                    <li>Advice: We tell you what computer is good for you. We help you buy a new computer.</li>
+                    <li>Install Programs: We install games and apps for you. We show you how to use them.</li>
+                </ul>
+                <p>Our team is patient. We explain step by step. You can ask us anything. We want you to learn. We want you to feel good with your computer. We are always ready to help you.</p>
+            </section>
+            <section id="product">
+                <div class="section-title">Products</div>
+                <p>We have many products for you. Our products are good and easy to use. You can see them here:</p>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <h4>Computadoras</h4>
+                        <img src="pc.jpg" alt="computers" class="product-img">
+                        <p>We sell computers. Our computers are new and used. You can use them for school, work, or games. The computers are fast. They are easy to use. We help you choose the best computer. We have laptops and desktop computers. All computers have warranty. If you need help, we help you. You can ask us anything about computers.</p>
+                        <ul>
+                            <li>Easy to use</li>
+                            <li>Good price</li>
+                            <li>Warranty included</li>
+                            <li>For home and office</li>
+                            <li>We help you install programs</li>
+                            <li>We show you how to use your computer</li>
+                        </ul>
+                    </div>
+                    <div class="product-card">
+                        <h4>Componentes</h4>
+                        <img src="componentes.jpg" alt="components" class="product-img">
+                        <p>We have many computer parts. You can buy a mouse, keyboard, monitor, or cables. We also have RAM, hard drives, and more. If you do not know what you need, we help you. Our parts are new and work very well. We can change the parts for you. We explain how to use them.</p>
+                        <ul>
+                            <li>Mouse and keyboard</li>
+                            <li>Monitors</li>
+                            <li>RAM and hard drives</li>
+                            <li>Cables and chargers</li>
+                            <li>Speakers and headphones</li>
+                            <li>We help you install the parts</li>
+                        </ul>
+                    </div>
+                    <div class="product-card">
+                        <h4>Personal Assistant</h4>
+                        <img src="personal.png" alt="Personal Assistant" class="product-img">
+                        <p>We offer a personal assistant for you. The assistant helps you with your computer. The assistant answers your questions. The assistant is friendly and patient. You can ask for help any time. The assistant explains things in simple words. The assistant wants you to learn and feel happy. The assistant is always ready to help you.</p>
+                        <ul>
+                            <li>Helps you step by step</li>
+                            <li>Speaks simple English</li>
+                            <li>Friendly and patient</li>
+                            <li>Always ready to help</li>
+                            <li>You can ask anything</li>
+                            <li>Makes technology easy for you</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section id="contact">
+                <div class="section-title">Contact</div>
+                <p>You can contact us in many ways. We are happy to talk with you. You can send us an email or call us. You can also visit our shop. We answer fast and with a smile. We want to help you. Do not be afraid to ask. We are your friends in technology.</p>
+                <ul>
+                    <li>Email: info@compustart.com</li>
+                    <li>Phone: +502 5888-3933</li>
+                    <li>Address: 4av 8-31 villa nueva</li>
+                    <li>Open: Monday to Saturday, 8:00 am - 6:00 pm</li>
+                </ul>
+                <p>Thank you for visiting our page. We hope to see you soon. Remember, we are your friends in technology! We want you to be happy. We are always here for you. Have a nice day!</p>
+            </section>
+        </main>
+        <aside>
+            <div class="news-title">News</div>
+            <ul class="news-list">
+                <li>New computers in stock! Come and see our new models.</li>
+                <li>Special offer: Free antivirus with every computer this week.</li>
+                <li>We now fix phones and tablets too! Ask for more info.</li>
+                <li>Our shop is open on Saturdays. Visit us this weekend!</li>
+                <li>Follow us on Facebook for more news and tips.</li>
+            </ul>
+        </aside>
+    </div>
+    <footer>
+        Carlos Daniel Antony Romeo Castañeda Gonzalez
+    </footer>
+    <div class="company-logo-fixed">
+        <img src="estrella.png" alt="Company Logo">
+    </div>
+</body>
+</html>
